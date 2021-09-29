@@ -1,0 +1,21 @@
+{% extends "./site_pages_base.html" %}
+{% load static %}
+
+{% block page_title %}Homepage{% endblock page_title %}
+
+{% block content %}
+{% if home.alert_banner != '' %}
+<p style="font-size: larger;" class="pad-container shadow">{{ home.alert_banner }}</p>
+{% endif %}
+<div class="header-image-features shadow">
+    <div class="container text-center pad-container">
+            <h1 class="text-light textshadow">{{ home.title }}</h1>
+            {% if home.about_descr != '' %}
+            <p class="center-container hide-when-small text-dark">
+                {{ home.about_descr | safe | linebreaksbr }}
+            </p>
+            {% endif %}
+    </div>
+</div>
+<!--style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{{ header_image }}');"-->
+{% endblock content %}

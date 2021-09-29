@@ -1,0 +1,36 @@
+
+{% extends './users_base.html' %}
+
+{% block content %}
+
+<style>
+	ul { list-style: none; }
+	li { color: red; }
+</style>
+<div class="login-container shadow">
+    <h2 class="text-center" style="margin-bottom: 4%;">
+        Account Settings
+    </h2>
+    <div class="d-flex justify-content-center" style="margin-bottom: 5%;">
+        <a href="{% url 'users:reset_password' %}">
+            <button class="btn btn-outline-secondary">
+                Update my password
+            </button>
+        </a>
+    </div>
+    <form method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="form-btn-container">
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-primary" type="submit"
+                    style="padding-left: 30%; padding-right: 30%;">
+                    Save
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<br>
+
+{% endblock content %}

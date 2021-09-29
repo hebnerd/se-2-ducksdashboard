@@ -1,0 +1,31 @@
+{% extends './users_base.html' %}
+
+{% block content %}
+<div class="login-container shadow">
+
+	<div class="title">
+		<h2>Sign in to continue</h2>
+	</div>
+
+    <form action="{% url 'users:login' %}" method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+
+		<div class="form-btn-container">
+			<div class="d-flex justify-content-center">
+				<button class="btn btn-primary" type="submit"
+					style="padding-left: 10%; padding-right: 10%;">
+					Log in
+				</button>
+			</div>
+		</div>
+
+        <input type="hidden" name="next"
+            value="{% url 'admin_pages:admin_index' %}" />
+	</form>
+	<br>
+	Forgot your password?
+	<a href="{% url 'users:reset_password' %}">Reset it here</a>.
+</div>
+
+{% endblock content %}
