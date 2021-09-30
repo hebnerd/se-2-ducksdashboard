@@ -18,26 +18,26 @@ class UserProfile(models.Model):
 #################### Metrics:
 # TODO: Implement each of these. These are the options that let us specify # of bins (e.g. top 5, top 10 most popular) and time range.
 
-class PetSalesDisplayOpts(models.Model): # Most popular pets sold per unit of time
+class PetSalesOpts(models.Model): # Most popular pets sold per unit of time
     # Define attributes here
     pass
 
 
-class ProductSalesDisplayOpts(models.Model): # Most popular store products sold per unit of time
+class ProductSalesOpts(models.Model): # Most popular store products sold per unit of time
     # Define attributes here
     pass
 
 
-class SiteVisitsDisplayOpts(models.Model): # This is referring to the Session table -- [...]/monitoring/usage/visits
+class SiteVisitsOpts(models.Model): # This is referring to the Session table -- [...]/monitoring/usage/visits
     # Define attributes here
     pass
 
 
-class PagesViewedDisplayOpts(models.Model): # Pages_Viewed table -- Most popular pages viewed per unit of time.
+class PagesViewedOpts(models.Model): # Pages_Viewed table -- Most popular pages viewed per unit of time.
     # Define attributes here
     pass
 
 
-class UsersDisplayOpts(models.Model): # No. users registered per unit of time, no. users online now
+class UsersOpts(models.Model): # No. users registered per unit of time, no. users online now
     # Define attributes here
     pass
