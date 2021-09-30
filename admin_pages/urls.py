@@ -9,4 +9,7 @@ urlpatterns = [
     path('manage_home', views.manage_home, name='manage_home'),
     path('manage_users', views.manage_users, name='manage_users'),
     path('manage_user_profile', views.manage_user_profile, name='manage_user_profile'),
+
+    # Metrics
+    path('manage_pet_sales_opts', views.manage_pet_sales_opts, name='manage_pet_sales_opts'),
 ]

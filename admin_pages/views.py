@@ -149,3 +149,16 @@ def manage_users(request):
         return render(request, 'admin_pages/manage_users/manage_users.html', context)
     else:
         return HttpResponseRedirect(reverse('admin_pages:admin_index'))
+
+@login_required
+def manage_pet_sales_opts(request):
+    pet_sales_opts = PetSalesOpts.objects.get(id=1)
+    if request.method != 'POST':
+        form = PetSalesOptsForm(instance=pet_sales_opts)
+    else:
+        form = PetSalesOptsForm(instance=pet_sales_opts, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('admin_pages:admin_index'))
+    context = { 'form': form }
+    return render(request, 'admin_pages/manage_metrics_display_opts/manage_petsales.html', context)

@@ -107,3 +107,36 @@ class UserProfileForm(forms.ModelForm):
         fields = [ 'profile_img', 'profile_role', 'user' ]
 
 # TODO: Make ModelForms for each of the DisplayOpts models
+class PetSalesOptsForm(forms.ModelForm):
+    top_num_categories = forms.IntegerField(
+        label='Most Popular, # of Categories',
+        widget=forms.Select(
+            choices=MetricsDisplayOpts.MAX_BINS
+        )
+    )
+
+    top_num_breeds = forms.IntegerField(
+        label='Most Popular, # of Breeds',
+        widget=forms.Select(
+            choices=MetricsDisplayOpts.MAX_BINS
+        )
+    )
+
+    timerange = forms.IntegerField(
+        label='Time range',
+        widget=forms.Select(
+            choices=MetricsDisplayOpts.TIME_RANGE
+        )
+    )
+
+    display = forms.BooleanField(
+        label='Show on Dasboard'
+    )
+
+    class Meta:
+        model = PetSalesOpts
+        fields = [
+            'top_num_categories', 'top_num_breeds',
+            'timerange', 'display'
+        ]
+

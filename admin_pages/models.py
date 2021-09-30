@@ -19,8 +19,10 @@ class UserProfile(models.Model):
 # TODO: Implement each of these. These are the options that let us specify # of bins (e.g. top 5, top 10 most popular) and time range.
 
 class PetSalesOpts(models.Model): # Most popular pets sold per unit of time
-    # Define attributes here
-    pass
+    top_num_categories = models.IntegerField(default=6)
+    top_num_breeds = models.IntegerField(default=6)
+    timerange = models.IntegerField(default=7)
+    display = models.BooleanField(default=False)
 
 
 class ProductSalesOpts(models.Model): # Most popular store products sold per unit of time
