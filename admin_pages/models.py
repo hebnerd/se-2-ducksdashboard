@@ -26,20 +26,23 @@ class PetSalesOpts(models.Model): # Most popular pets sold per unit of time
 
 
 class ProductSalesOpts(models.Model): # Most popular store products sold per unit of time
-    # Define attributes here
-    pass
-
+    top_num_products = models.IntegerField(default=6)
+    timerange = models.IntegerField(default=7)
+    display = models.BooleanField(default=False)
 
 class SiteVisitsOpts(models.Model): # This is referring to the Session table -- [...]/monitoring/usage/visits
-    # Define attributes here
-    pass
-
+    top_num_by_location = models.IntegerField(default=6)
+    display_type = models.IntegerField(default=0)
+    timerange = models.IntegerField(default=7)
+    display = models.BooleanField(default=False)
 
 class PagesViewedOpts(models.Model): # Pages_Viewed table -- Most popular pages viewed per unit of time.
-    # Define attributes here
-    pass
+    top_num_pages = models.IntegerField(default=6)
+    timerange = models.IntegerField(default=7)
+    display = models.BooleanField(default=False)
 
 
 class UsersOpts(models.Model): # No. users registered per unit of time, no. users online now
-    # Define attributes here
-    pass
+    timerange_registered = models.IntegerField(default=0)
+    show_users_online = models.BooleanField(default=True)
+    display = models.BooleanField(default=False)

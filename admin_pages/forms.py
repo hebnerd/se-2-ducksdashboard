@@ -40,6 +40,10 @@ class MetricsDisplayOpts:
         (7, 'Week'),
         (30, 'Month'), # Keeping month simple -- we will just get last 30 days.
     )
+    DISPLAY_TYPE = (
+        (0, 'Top Regions'),
+        (1, 'Top Countries')
+    )
 
 PROFILE_ROLES = (
     ('Product Owner', 'Product Owner'),
@@ -140,3 +144,110 @@ class PetSalesOptsForm(forms.ModelForm):
             'timerange', 'display'
         ]
 
+class ProductSalesOptsForm(forms.ModelForm):
+    top_num_products = forms.IntegerField(
+        label='Most Popular, # of Products',
+        widget=forms.Select(
+            choices=MetricsDisplayOpts.MAX_BINS
+        )
+    )
+
+    timerange = forms.IntegerField(
+        label='Time range',
+        widget=forms.Select(
+            choices=MetricsDisplayOpts.TIME_RANGE
+        )
+    )
+
+    display = forms.BooleanField(
+        label='Show on dashboard'
+    )
+
+    class Meta:
+        model = ProductSalesOpts
+        fields = [
+            'top_num_products', 'timerange',
+            'display'
+        ]
+
+class SiteVisitOptsForm(forms.ModelForm):
+    top_num_by_location = forms.IntegerField(
+        label='Most Popular by Location',
+        widget=forms.Select(
+            choices=MetricsDisplayOpts.MAX_BINS
+        )
+    )
+
+    display_type = forms.IntegerField(
+        label='Display Type',
+        widget=forms.Select(
+            choices=MetricsDisplayOpts.DISPLAY_TYPE
+        )
+    )
+
+    timerange = forms.IntegerField(
+        label='Time range',
+        widget=forms.Select(
+            choices=MetricsDisplayOpts.TIME_RANGE
+        )
+    )
+
+    display = forms.BooleanField(
+        label='Show on dashboard'
+    )
+
+    class Meta:
+        model = SiteVisitsOpts
+        fields = [
+            'top_num_by_location', 'display_type',
+            'timerange', 'display'
+        ]
+
+class PagesViewedOptsForm(forms.ModelForm):
+    top_num_pages = forms.IntegerField(
+        label='Most Popular, # of pages',
+        widget=forms.Select(
+            choices=MetricsDisplayOpts.MAX_BINS
+        )
+    )
+
+    timerange = forms.IntegerField(
+        label='Time range',
+        widget=forms.Select(
+            choices=MetricsDisplayOpts.TIME_RANGE
+        )
+    )
+
+    display = forms.BooleanField(
+        label='Show on dashboard'
+    )
+
+    class Meta:
+        model = PagesViewedOpts
+        fields = [
+            'top_num_pages', 'timerange', 
+            'display'
+        ]
+
+class UsersOptsForm(forms.ModelForm):
+    timerange_registered = forms.IntegerField(
+        label='Time range registered',
+        widget=forms.Select(
+            choices=MetricsDisplayOpts.TIME_RANGE
+        )
+    )
+
+    show_users_online = forms.BooleanField(
+        label='Show users online'
+    )
+
+    display = forms.BooleanField(
+        label='Show on dashboard'
+    )
+
+    class Meta:
+        model = UsersOpts
+        fields = [
+            'timerange_registered', 'show_users_online',
+            'display'
+        ]
