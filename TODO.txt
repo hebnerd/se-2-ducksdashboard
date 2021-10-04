@@ -1,0 +1,2 @@
+# Note -- add model creation for the metric display option models in
+# initial setup script once all the models have been written.
