@@ -1,5 +1,5 @@
 from site_pages.models import Home
-from admin_pages.models import SiteLook, UserProfile
+from admin_pages.models import *
 from django.contrib.auth.models import User
 
 x = Home(
@@ -11,6 +11,21 @@ x = SiteLook(
     id=1,
     navigation_img_size='width: 90%;',
 )
+x.save()
+
+x = PetSalesOpts(id=1)
+x.save()
+
+x = ProductSalesOpts(id=1)
+x.save()
+
+x = SiteVisitsOpts(id=1)
+x.save()
+
+x = PagesViewedOpts(id=1)
+x.save()
+
+x = UsersOpts(id=1)
 x.save()
 
 print('\n###### Create initial admin account ######')
