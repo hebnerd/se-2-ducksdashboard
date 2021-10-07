@@ -134,7 +134,8 @@ class PetSalesOptsForm(forms.ModelForm):
     )
 
     display = forms.BooleanField(
-        label='Show on Dasboard'
+        label='Show on Dashboard',
+        required=False
     )
 
     class Meta:
@@ -160,7 +161,8 @@ class ProductSalesOptsForm(forms.ModelForm):
     )
 
     display = forms.BooleanField(
-        label='Show on dashboard'
+        label='Show on Dashboard',
+        required=False
     )
 
     class Meta:
@@ -193,7 +195,8 @@ class SiteVisitsOptsForm(forms.ModelForm):
     )
 
     display = forms.BooleanField(
-        label='Show on dashboard'
+        label='Show on Dashboard',
+        required=False
     )
 
     class Meta:
@@ -219,7 +222,8 @@ class PagesViewedOptsForm(forms.ModelForm):
     )
 
     display = forms.BooleanField(
-        label='Show on dashboard'
+        label='Show on Dashboard',
+        required=False
     )
 
     class Meta:
@@ -242,7 +246,8 @@ class UsersOptsForm(forms.ModelForm):
     )
 
     display = forms.BooleanField(
-        label='Show on dashboard'
+        label='Show on Dashboard',
+        required=False
     )
 
     class Meta:

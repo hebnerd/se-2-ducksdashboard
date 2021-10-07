@@ -15,4 +15,5 @@ urlpatterns = [
     path('manage_product_sales_opts', views.manage_product_sales_opts, name='manage_product_sales_opts'),
     path('manage_site_visits_opts', views.manage_site_visits_opts, name='manage_site_visits_opts'),
     path('manage_pages_viewed_opts', views.manage_pages_viewed_opts, name='manage_pages_viewed_opts'),
+    path('manage_users_opts', views.manage_users_opts, name='manage_users_opts'),
 ]

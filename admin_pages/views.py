@@ -201,3 +201,16 @@ def manage_pages_viewed_opts(request):
             return HttpResponseRedirect(reverse('admin_pages:admin_index'))
     context = { 'form': form } 
     return render(request, 'admin_pages/manage_metrics_display_opts/manage_pagesviewed.html', context)
+
+@login_required
+def manage_users_opts(request):
+    users_opts = UsersOpts.objects.get(id=1)
+    if request.method != 'POST':
+        form = UsersOptsForm(instance=users_opts)
+    else:
+        form = UsersOptsForm(instance=users_opts, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('admin_pages:admin_index'))
+    context = { 'form': form } 
+    return render(request, 'admin_pages/manage_metrics_display_opts/manage_users.html', context)
