@@ -9,6 +9,9 @@ def add_to_context(request):
 
     return {
         'pet_sales_opts': PetSalesOpts.objects.get(id=1),
+        'product_sales_opts': ProductSalesOpts.objects.get(id=1),
+        'manage_site_visits_opts': SiteVisitsOpts.objects.get(id=1),
+        'manage_pages_viewed_opts': PagesViewedOpts.objects.get(id=1),
         'navigation_img_size': site_look.navigation_img_size,
         'profile': profile
     }

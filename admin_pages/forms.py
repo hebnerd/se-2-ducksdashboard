@@ -170,7 +170,7 @@ class ProductSalesOptsForm(forms.ModelForm):
             'display'
         ]
 
-class SiteVisitOptsForm(forms.ModelForm):
+class SiteVisitsOptsForm(forms.ModelForm):
     top_num_by_location = forms.IntegerField(
         label='Most Popular by Location',
         widget=forms.Select(

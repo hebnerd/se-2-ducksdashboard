@@ -133,7 +133,7 @@ def manage_user_profile(request):
 def manage_users(request):
     """Provides the user a form template to facilitate creation and deletion of a
     User admin (ish) account. The user is considered an admin for access to the 
-    Admin Pages and API but is not a true Django admin which is unneccessary since
+    Admin Pages and API but is not a true Django admin which is unnecessary since
     there are no admin-registered models.
 
     Parameters:
@@ -162,3 +162,42 @@ def manage_pet_sales_opts(request):
             return HttpResponseRedirect(reverse('admin_pages:admin_index'))
     context = { 'form': form }
     return render(request, 'admin_pages/manage_metrics_display_opts/manage_petsales.html', context)
+
+@login_required
+def manage_product_sales_opts(request):
+    product_sales_opts = ProductSalesOpts.objects.get(id=1)
+    if request.method != 'POST':
+        form = ProductSalesOptsForm(instance=product_sales_opts)
+    else:
+        form = ProductSalesOptsForm(instance=product_sales_opts, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('admin_pages:admin_index'))
+    context = { 'form': form } 
+    return render(request, 'admin_pages/manage_metrics_display_opts/manage_productsales.html', context)
+
+@login_required
+def manage_site_visits_opts(request):
+    site_visits_opts = SiteVisitsOpts.objects.get(id=1)
+    if request.method != 'POST':
+        form = SiteVisitsOptsForm(instance=site_visits_opts)
+    else:
+        form = SiteVisitsOptsForm(instance=site_visits_opts, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('admin_pages:admin_index'))
+    context = { 'form': form } 
+    return render(request, 'admin_pages/manage_metrics_display_opts/manage_sitevisits.html', context)
+
+@login_required
+def manage_pages_viewed_opts(request):
+    pages_viewed_opts = PagesViewedOpts.objects.get(id=1)
+    if request.method != 'POST':
+        form = PagesViewedOptsForm(instance=pages_viewed_opts)
+    else:
+        form = PagesViewedOptsForm(instance=pages_viewed_opts, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('admin_pages:admin_index'))
+    context = { 'form': form } 
+    return render(request, 'admin_pages/manage_metrics_display_opts/manage_pagesviewed.html', context)
