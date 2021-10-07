@@ -134,7 +134,8 @@ class PetSalesOptsForm(forms.ModelForm):
     )
 
     display = forms.BooleanField(
-        label='Show on Dasboard'
+        label='Show on Dashboard',
+        required=False
     )
 
     class Meta:
@@ -160,7 +161,8 @@ class ProductSalesOptsForm(forms.ModelForm):
     )
 
     display = forms.BooleanField(
-        label='Show on dashboard'
+        label='Show on Dashboard',
+        required=False
     )
 
     class Meta:
@@ -170,7 +172,7 @@ class ProductSalesOptsForm(forms.ModelForm):
             'display'
         ]
 
-class SiteVisitOptsForm(forms.ModelForm):
+class SiteVisitsOptsForm(forms.ModelForm):
     top_num_by_location = forms.IntegerField(
         label='Most Popular by Location',
         widget=forms.Select(
@@ -193,7 +195,8 @@ class SiteVisitOptsForm(forms.ModelForm):
     )
 
     display = forms.BooleanField(
-        label='Show on dashboard'
+        label='Show on Dashboard',
+        required=False
     )
 
     class Meta:
@@ -219,7 +222,8 @@ class PagesViewedOptsForm(forms.ModelForm):
     )
 
     display = forms.BooleanField(
-        label='Show on dashboard'
+        label='Show on Dashboard',
+        required=False
     )
 
     class Meta:
@@ -238,11 +242,13 @@ class UsersOptsForm(forms.ModelForm):
     )
 
     show_users_online = forms.BooleanField(
-        label='Show users online'
+        label='Show users online',
+        required=False
     )
 
     display = forms.BooleanField(
-        label='Show on dashboard'
+        label='Show on Dashboard',
+        required=False
     )
 
     class Meta:
