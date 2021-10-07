@@ -242,7 +242,8 @@ class UsersOptsForm(forms.ModelForm):
     )
 
     show_users_online = forms.BooleanField(
-        label='Show users online'
+        label='Show users online',
+        required=False
     )
 
     display = forms.BooleanField(
