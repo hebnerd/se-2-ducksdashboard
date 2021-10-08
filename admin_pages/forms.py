@@ -42,7 +42,7 @@ class MetricsDisplayOpts:
     )
     DISPLAY_TYPE = (
         (0, 'Top Regions'),
-        (1, 'Top Countries')
+        (1, 'Top Countries'),
     )
 
 PROFILE_ROLES = (

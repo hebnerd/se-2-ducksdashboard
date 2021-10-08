@@ -1,14 +1,9 @@
-from django.shortcuts import redirect, render
-from django.http import HttpResponse, HttpResponseRedirect, Http404
-from django.urls import reverse
-from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
-from django.core.files.storage import FileSystemStorage
-from django.views.decorators.cache import never_cache
+from django.shortcuts import render
 
 from dashboard import settings
 from .models import *
 from .forms import *
+from admin_pages.models import *
 
 def index(request):
     """Displays the landing page.
@@ -17,6 +12,12 @@ def index(request):
     Returns:
     HttpResponse: Directs the user to the landing page.
     """
-    home = Home.objects.get(id=1)
-    context = { 'home': home }
+    context = {
+        'home': Home.objects.get(id=1),
+        'petSalesOpts': PetSalesOpts.objects.get(id=1),
+        'productSalesOpts': ProductSalesOpts.objects.get(id=1),
+        'siteVisitsOpts': SiteVisitsOpts.objects.get(id=1),
+        'pagesViewedOpts': PagesViewedOpts.objects.get(id=1),
+        'usersOpts': UsersOpts.objects.get(id=1)
+    }
     return render(request, 'site_pages/index.html', context)
