@@ -24,8 +24,15 @@ def group_collection(collection, attribute, max_bins):
                 values[j] = values[i]
                 categories[i] = temp_str
                 values[i] = temp_int
+    
+    other_values = sum(values[max_bins:]) # Aggregate everything > max_bins into an 'Other' grouping.
+    categories = categories[:max_bins]
+    values = values[:max_bins]
 
-    return categories[:max_bins], values[:max_bins]
+    categories.append('All Other')
+    values.append(other_values)
+
+    return categories, values
 
 def get_pet_sales_categories(timerange, max_bins):
     query = requests.get(f"{URL_PREFIX}/sales/pets?timerange={timerange}")
