@@ -23,9 +23,6 @@ def index(request):
 
     pet_categories_list, pet_categories_values_list = data_aggregator.get_pet_sales_categories(petSalesOpts.timerange, petSalesOpts.top_num_categories)
     pet_breeds_list, pet_breeds_values_list = data_aggregator.get_pet_sales_breeds(petSalesOpts.timerange, petSalesOpts.top_num_breeds)
-    
-    print(pet_categories_list)
-    print(pet_categories_values_list)
 
     context = {
         'home': home,

@@ -30,15 +30,15 @@
         let petCategoriesList = {{ pet_categories_list|json }};
         let petCategoriesValuesList = {{ pet_categories_values_list|json }};  
 
+        document.getElementById('id-petCategoriesLabel').textContent = "Pet Sales of top " + "{{ petSalesOpts.top_num_categories }} categories - last {{ petSalesOpts.timerange }} days";
         var ctx1 = document.getElementById('id-petCategoriesChart').getContext('2d');
         var petSalesChart = new Chart(ctx1, {
-            type: 'bar',
+            type: 'doughnut',
             data:
             {
                 labels: petCategoriesList,
                 datasets: [
                     {
-                    label: "Pet Sales of top " + "{{ petSalesOpts.top_num_categories }} categories - last {{ petSalesOpts.timerange }} days",
                         data: petCategoriesValuesList,
                         backgroundColor: BG_COLORS,
                         borderWidth: 1
@@ -46,31 +46,13 @@
                 ]
             },
             options: {
-                scales: {
-                    xAxes: [{
-                        ticks: {
-                            fontSize: 16
-                        }
-                    }],
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true,
-                            stepSize: 1,
-                            suggestedMax: 10,
-                            fontSize: 16
-                        }
-                    }]
-                },
                 legend: {
                     labels: {
                     // This more specific font property overrides the global property
                         fontColor: 'black',
-                        fontSize: 18,
-                        boxWidth: 0
+                        fontSize: 18
                     }
-                },
-                maintainAspectRatio: false,
-                //responsive: false
+                }
             }
         });
 
@@ -142,6 +124,7 @@
     {% if petSalesOpts.display %}
     <div class="row wide-margins-row">
         <div class="col-sm">
+            <span style="font-size: 18px; color: black" id="id-petCategoriesLabel"></span>
             <canvas width="75" height="75" id="id-petCategoriesChart"></canvas>
         </div>
         <div class="col-sm">
