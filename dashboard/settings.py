@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'admin_pages',
     'site_pages',
     'users',
+    'json_tag'
 ]
 
 MIDDLEWARE = [

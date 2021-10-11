@@ -3,19 +3,154 @@
 
 {% block page_title %}Homepage{% endblock page_title %}
 
+{% block morelinks %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+{% endblock morelinks %}
+
+{% block head_scripts %}
+<script>
+    $(document).ready(function() {
+        BG_COLORS = [
+        'rgba(0, 0, 0, 0.8)',
+        'rgba(97, 156, 255, 0.8)',
+        'rgba(0, 192, 175, 0.8)',
+        'rgba(201, 152, 0, 0.8)',
+        'rgba(185, 56, 255, 0.8)',
+        'rgba(248, 118, 109, 0.8)',
+        'rgba(0, 176, 246, 0.8)',
+        'rgba(0, 186, 56, 0.8)',
+        'rgba(163, 165, 0, 0.8)',
+        'rgba(231, 107, 243, 0.8)',
+        'rgba(255, 103, 164, 0.8)',
+        'rgba(107, 177, 0, 0.8)',
+        'rgba(229, 135, 0, 0.8)',
+        'rgba(253, 97, 209, 0.8)'
+    ]
+        {% load json_tag %}
+        let petCategoriesList = {{ pet_categories_list|json }};
+        let petCategoriesValuesList = {{ pet_categories_values_list|json }};  
+
+        var ctx1 = document.getElementById('id-petCategoriesChart').getContext('2d');
+        var petSalesChart = new Chart(ctx1, {
+            type: 'bar',
+            data:
+            {
+                labels: petCategoriesList,
+                datasets: [
+                    {
+                    label: "Pet Sales of top " + "{{ petSalesOpts.top_num_categories }} categories - last {{ petSalesOpts.timerange }} days",
+                        data: petCategoriesValuesList,
+                        backgroundColor: BG_COLORS,
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            fontSize: 16
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 1,
+                            suggestedMax: 10,
+                            fontSize: 16
+                        }
+                    }]
+                },
+                legend: {
+                    labels: {
+                    // This more specific font property overrides the global property
+                        fontColor: 'black',
+                        fontSize: 18,
+                        boxWidth: 0
+                    }
+                },
+                maintainAspectRatio: false,
+                //responsive: false
+            }
+        });
+
+        let petBreedsList = {{ pet_breeds_list|json }};
+        let petBreedsValuesList = {{ pet_breeds_values_list|json }};
+
+        var ctx2 = document.getElementById('id-petBreedsChart').getContext('2d');
+        var petSalesChart = new Chart(ctx2, {
+            type: 'bar',
+            data:
+            {
+                labels: petBreedsList,
+                datasets: [
+                    {
+                    label: "Pet Sales of top " + "{{ petSalesOpts.top_num_breeds }} breeds - last {{ petSalesOpts.timerange }} days",
+                        data: petBreedsValuesList,
+                        backgroundColor: BG_COLORS,
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            fontSize: 16
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 1,
+                            suggestedMax: 10,
+                            fontSize: 16
+                        }
+                    }]
+                },
+                legend: {
+                    labels: {
+                    // This more specific font property overrides the global property
+                        fontColor: 'black',
+                        fontSize: 18,
+                        boxWidth: 0
+                    }
+                },
+                maintainAspectRatio: true,
+                //responsive: false
+            }
+        });
+    });
+</script>
+{% endblock head_scripts %}
+
 {% block content %}
 {% if home.alert_banner != '' %}
 <p style="font-size: larger;" class="pad-container shadow">{{ home.alert_banner }}</p>
 {% endif %}
-<div class="header-image-features shadow">
-    <div class="container text-center pad-container">
-            <h1 class="text-light textshadow">{{ home.title }}</h1>
-            {% if home.about_descr != '' %}
-            <p class="center-container hide-when-small text-dark">
-                {{ home.about_descr | safe | linebreaksbr }}
-            </p>
-            {% endif %}
+
+<div class="container pad-container text-center">
+    <h1 class="text-light textshadow">{{ home.title }}</h1>
+    {% if home.about_descr != '' %}
+    <p class="center-container hide-when-small text-dark">
+        {{ home.about_descr | safe | linebreaksbr }}
+    </p>
+    {% endif %}
+</div>
+
+<div class="container">
+    {% if petSalesOpts.display %}
+    <div class="row wide-margins-row">
+        <div class="col-sm">
+            <canvas width="75" height="75" id="id-petCategoriesChart"></canvas>
+        </div>
+        <div class="col-sm">
+            <canvas width="75" height="75" id="id-petBreedsChart"></canvas>
+        </div>
     </div>
+    {% endif %}
+    
+    <!-- Start additional rows here -->
 </div>
 <!--style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{{ header_image }}');"-->
 {% endblock content %}
