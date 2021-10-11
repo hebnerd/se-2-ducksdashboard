@@ -12,19 +12,21 @@ def group_collection(collection, attribute, max_bins):
 
     categories = list(categories_map.keys())
     values = list(categories_map.values())
-    max_index = 0
     temp_str = ''
     temp_int = 0
-    for i in range(0, ( len(categories) - 1 )):
-        for j in range (i+1, len(categories)):
-            if values[j] > values[max_index]:
-                max_index = j
-        temp_str = categories[max_index]
-        categories[max_index] = categories[i]
-        categories[i] = temp_str
+    list_len = len(categories)
+    for i in range(0, list_len-1):
+        for j in range(i+1, list_len):
+            if values[j] > values[i]:
+                temp_str = categories[j]
+                temp_int = values[j]
+                categories[j] = categories[i]
+                values[j] = values[i]
+                categories[i] = temp_str
+                values[i] = temp_int
 
-    return categories[:(max_bins - 1)], values[:max_bins]
-    
+    return categories[:max_bins], values[:max_bins]
+
 def get_pet_sales_categories(timerange, max_bins):
     query = requests.get(f"{URL_PREFIX}/sales/pets?timerange={timerange}")
     results = query.json()['results']
