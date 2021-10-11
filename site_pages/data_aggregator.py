@@ -2,13 +2,22 @@ import requests
 
 URL_PREFIX = 'https://teamducks.herokuapp.com/api/monitoring'
 
-def group_collection(collection, attribute, max_bins):
+# Only need to pass aggregate_on_quantity_field=True for Product_Sales
+
+def group_collection(collection, attribute, max_bins, aggregate_on_quantity_field=False):
     categories_map = {}
-    for row in collection:
-        try:
-            categories_map[row[attribute]] += 1
-        except:
-            categories_map[row[attribute]] = 1
+    if not aggregate_on_quantity_field:
+        for row in collection:
+            try:
+                categories_map[row[attribute]] += 1
+            except:
+                categories_map[row[attribute]] = 1
+    else:
+        for row in collection: # Aggregate the quantity each time rather than increment by one.
+            try:
+                categories_map[row[attribute]] += row['Quantity']
+            except:
+                categories_map[row[attribute]] = row['Quantity']
 
     categories = list(categories_map.keys())
     values = list(categories_map.values())
