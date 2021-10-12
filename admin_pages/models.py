@@ -24,7 +24,6 @@ class PetSalesOpts(models.Model): # Most popular pets sold per unit of time
     timerange = models.IntegerField(default=7)
     display = models.BooleanField(default=False)
 
-
 class ProductSalesOpts(models.Model): # Most popular store products sold per unit of time
     top_num_products = models.IntegerField(default=6)
     timerange = models.IntegerField(default=7)
