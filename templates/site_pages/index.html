@@ -102,6 +102,148 @@
                 //responsive: false
             }
         });
+		
+		let productSalesList = {{ product_sales_list|json }};
+		let productSalesValuesList = {{ product_sales_values_list|json }};
+		
+		var ctx3 = document.getElementById('id-productSalesChart').getContext('2d');
+        var productSalesChart = new Chart(ctx3, {
+            type: 'bar',
+            data:
+            {
+                labels: productSalesList,
+                datasets: [
+                    {
+                    label: "Product Sales of top " + "{{ productSalesOpts.top_num_products }} products - last {{ productSalesOpts.timerange }} days",
+                        data: productSalesValuesList,
+                        backgroundColor: BG_COLORS,
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            fontSize: 16
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 1,
+                            suggestedMax: 5,
+                            fontSize: 16
+                        }
+                    }]
+                },
+                legend: {
+                    labels: {
+                    // This more specific font property overrides the global property
+                        fontColor: 'black',
+                        fontSize: 18,
+                        boxWidth: 0
+                    }
+                },
+                maintainAspectRatio: true,
+                //responsive: false
+            }
+        });
+		
+		let visitsCountryList = {{ visits_country_list|json }};
+		let visitCountryValuesList = {{ visits_country_values_list|json }};
+		
+		var ctx4 = document.getElementById('id-visitsCountryChart').getContext('2d');
+        var countryVisitsChart = new Chart(ctx4, {
+            type: 'bar',
+            data:
+            {
+                labels: visitsCountryList,
+                datasets: [
+                    {
+                    label: "Visits of top " + "{{ siteVisitsOpts.top_num_by_location }} countries - last {{ siteVisitsOpts.timerange }} days",
+                        data: visitCountryValuesList,
+                        backgroundColor: BG_COLORS,
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            fontSize: 16
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 1,
+                            suggestedMax: 5,
+                            fontSize: 16
+                        }
+                    }]
+                },
+                legend: {
+                    labels: {
+                    // This more specific font property overrides the global property
+                        fontColor: 'black',
+                        fontSize: 18,
+                        boxWidth: 0
+                    }
+                },
+                maintainAspectRatio: true,
+                //responsive: false
+            }
+        });
+		
+		let pageViewList = {{ page_views_list|json }};
+		let pageViewValuesList = {{ page_views_values_list|json }};
+		
+		var ctx5 = document.getElementById('id-pageViewsChart').getContext('2d');
+        var pageViewsChart = new Chart(ctx5, {
+            type: 'bar',
+            data:
+            {
+                labels: pageViewList,
+                datasets: [
+                    {
+                    label: "Views of top " + "{{ pagesViewedOpts.top_num_pages }} pages - last {{ pagesViewedOpts.timerange }} days",
+                        data: pageViewValuesList,
+                        backgroundColor: BG_COLORS,
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            fontSize: 16
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 1,
+                            suggestedMax: 5,
+                            fontSize: 16
+                        }
+                    }]
+                },
+                legend: {
+                    labels: {
+                    // This more specific font property overrides the global property
+                        fontColor: 'black',
+                        fontSize: 18,
+                        boxWidth: 0
+                    }
+                },
+                maintainAspectRatio: true,
+                //responsive: false
+            }
+        });	
+		
     });
 </script>
 {% endblock head_scripts %}
@@ -134,6 +276,22 @@
     {% endif %}
     
     <!-- Start additional rows here -->
+	<div class="row wide-margins-row">
+        <div class="col-sm">
+			<canvas width="75" height="75" id="id-productSalesChart"></canvas>
+		</div>
+		<div class="col-sm">
+			<canvas width="75" height="75" id="id-visitsCountryChart"></canvas>
+		</div>
+	</div>
+	<div class="row wide-margins-row">
+        <div class="col-sm">
+			<canvas width="75" height="75" id="id-pageViewsChart"></canvas>
+		</div>
+		<div class="col-sm">
+			<ul width="75" height="75"></ul>
+		</div>
+	</div>
 </div>
 <!--style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{{ header_image }}');"-->
 {% endblock content %}
