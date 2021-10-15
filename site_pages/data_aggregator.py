@@ -67,8 +67,3 @@ def get_page_views(timerange, max_bins):
     query = requests.get(f"{URL_PREFIX}/usage/views?timerange={timerange}")
     results = query.json()['results']
     return group_collection(results, 'Page_Name', max_bins)
-	
-def get_users_registered(timerange, max_bins):
-    query = requests.get(f"{URL_PREFIX}/users/registered?timerange={timerange}")
-    results = query.json()['results']
-    return group_collection(results, 'Page_Name', max_bins)
