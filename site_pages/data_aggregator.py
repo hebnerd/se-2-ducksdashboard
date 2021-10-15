@@ -52,3 +52,23 @@ def get_pet_sales_breeds(timerange, max_bins):
     query = requests.get(f"{URL_PREFIX}/sales/pets?timerange={timerange}")
     results = query.json()['results']
     return group_collection(results, 'Breed', max_bins)
+	
+def get_product_sales(timerange, max_bins):
+    query = requests.get(f"{URL_PREFIX}/sales/products?timerange={timerange}")
+    results = query.json()['results']
+    return group_collection(results, 'Description', max_bins)
+	
+def get_site_visits_country(timerange, max_bins):
+    query = requests.get(f"{URL_PREFIX}/usage/visits?timerange={timerange}")
+    results = query.json()['results']
+    return group_collection(results, 'Country', max_bins)
+	
+def get_page_views(timerange, max_bins):
+    query = requests.get(f"{URL_PREFIX}/usage/views?timerange={timerange}")
+    results = query.json()['results']
+    return group_collection(results, 'Page_Name', max_bins)
+	
+def get_users_registered(timerange, max_bins):
+    query = requests.get(f"{URL_PREFIX}/users/registered?timerange={timerange}")
+    results = query.json()['results']
+    return group_collection(results, 'Page_Name', max_bins)
