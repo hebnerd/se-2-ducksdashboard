@@ -34,14 +34,10 @@
         </svg>
         <span class="admin-title" style="font-size: 1.2em;">&nbsp;Metrics Display Options</span>
     </div>
-    <!---->
-    <!---->
-    <!-- TODO: Change the URLs below once the pages/routing are implemented. -->
-    <!---->
-    <!---->
     <div class="expand-content">
         <a class="admin-menu-item" href="{% url 'admin_pages:manage_pet_sales_opts' %}">
-            <i class="fas fa-dog" style="font-size: 2.6em;"></i>
+            {% load static %}
+            <img src="{% static 'images/fa-dog.png' %}" width="8%" height="8%">
             <span class="admin-title" style="font-size: 1.2em;">Pet Sales</span>
         </a>
         <a class="admin-menu-item" href="{% url 'admin_pages:manage_product_sales_opts' %}">

@@ -53,7 +53,7 @@ def get_pet_sales_breeds(timerange, max_bins):
     results = query.json()['results']
     return group_collection(results, 'Breed', max_bins)
 	
-def get_product_sales(timerange, max_bins):
+def get_product_sales(timerange, max_bins, aggregate_on_quantity_field=True):
     query = requests.get(f"{URL_PREFIX}/sales/products?timerange={timerange}")
     results = query.json()['results']
     return group_collection(results, 'Description', max_bins)
@@ -67,3 +67,12 @@ def get_page_views(timerange, max_bins):
     query = requests.get(f"{URL_PREFIX}/usage/views?timerange={timerange}")
     results = query.json()['results']
     return group_collection(results, 'Page_Name', max_bins)
+
+def get_users_metrics():
+    query = requests.get(f"{URL_PREFIX}/users/registered")
+    registered_users_count = len(query.json()['results'])
+
+    query = requests.get(f"{URL_PREFIX}/users/online")
+    online_users_count = len(query.json()['results'])
+
+    return registered_users_count, online_users_count
