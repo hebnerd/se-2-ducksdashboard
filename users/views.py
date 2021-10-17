@@ -8,6 +8,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
+from admin_pages.models import UserProfile
 from .forms import *
 
 def logout_view(request):
@@ -35,6 +36,12 @@ def register(request):
             new_usr.is_staff = data['is_staff']
             new_usr.save()
             new_usr.refresh_from_db()
+
+            usr_profile = UserProfile(
+                user=new_usr,
+                profile_role='Hacker'
+            )
+            usr_profile.save()
 
             return HttpResponseRedirect(reverse('admin_pages:manage_users'))
 
