@@ -30,11 +30,19 @@ def index(request):
     product_sales_list, product_sales_values_list = (data_aggregator
         .get_product_sales(productSalesOpts.timerange, productSalesOpts.top_num_products))
 
-    visits_country_list, visits_country_values_list = (data_aggregator
+    if siteVisitsOpts.display_type == 0: # Get per region
+        site_visits_list, site_visits_values_list = (data_aggregator
+        .get_site_visits_region(siteVisitsOpts.timerange, siteVisitsOpts.top_num_by_location))
+
+        site_visits_display_type = 'regions'
+    else: # Get per country
+        site_visits_list, site_visits_values_list = (data_aggregator
         .get_site_visits_country(siteVisitsOpts.timerange, siteVisitsOpts.top_num_by_location))
 
+        site_visits_display_type = 'countries'
+
     page_views_list, page_views_values_list = (data_aggregator
-        .get_page_views(pagesViewedOpts.timerange, pagesViewedOpts.top_num_pages))
+            .get_page_views(pagesViewedOpts.timerange, pagesViewedOpts.top_num_pages))
 
     users_registered_count, users_online_count = data_aggregator.get_users_metrics()
 
@@ -55,8 +63,9 @@ def index(request):
 		'product_sales_list': product_sales_list,
 		'product_sales_values_list': product_sales_values_list,
 		
-		'visits_country_list': visits_country_list,
-		'visits_country_values_list': visits_country_values_list,
+		'site_visits_list': site_visits_list,
+		'site_visits_values_list': site_visits_values_list,
+        'site_visits_display_type': site_visits_display_type,
 		
 		'page_views_list': page_views_list,
 		'page_views_values_list': page_views_values_list,

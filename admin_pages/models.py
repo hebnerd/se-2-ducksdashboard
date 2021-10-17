@@ -7,7 +7,6 @@ class SiteLook(models.Model):
     navigation_img      = models.FileField()
     navigation_img_size = models.CharField(max_length=12, blank=True, null=True)
 
-
 class UserProfile(models.Model):
     profile_img      = models.FileField(null=True, blank=True)
     profile_img_name = models.TextField(default='profile-default.gif')
@@ -39,7 +38,6 @@ class PagesViewedOpts(models.Model): # Pages_Viewed table -- Most popular pages 
     top_num_pages = models.IntegerField(default=6)
     timerange = models.IntegerField(default=7)
     display = models.BooleanField(default=False)
-
 
 class UsersOpts(models.Model): # No. users registered per unit of time, no. users online now
     timerange_registered = models.IntegerField(default=0)

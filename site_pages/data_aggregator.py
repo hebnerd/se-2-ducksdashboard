@@ -57,6 +57,11 @@ def get_product_sales(timerange, max_bins, aggregate_on_quantity_field=True):
     query = requests.get(f"{URL_PREFIX}/sales/products?timerange={timerange}")
     results = query.json()['results']
     return group_collection(results, 'Description', max_bins)
+
+def get_site_visits_region(timerange, max_bins):
+    query = requests.get(f"{URL_PREFIX}/usage/visits?timerange={timerange}")
+    results = query.json()['results']
+    return group_collection(results, 'Region', max_bins)
 	
 def get_site_visits_country(timerange, max_bins):
     query = requests.get(f"{URL_PREFIX}/usage/visits?timerange={timerange}")

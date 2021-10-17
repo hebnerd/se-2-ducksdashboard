@@ -155,19 +155,19 @@
             }
         });
 		
-		let visitsCountryList = {{ visits_country_list|json }};
-		let visitCountryValuesList = {{ visits_country_values_list|json }};
+		let siteVisitsList = {{ site_visits_list|json }};
+		let siteVisitsValuesList = {{ site_visits_values_list|json }};
 		
-		var ctx4 = document.getElementById('id-visitsCountryChart').getContext('2d');
+		var ctx4 = document.getElementById('id-siteVisitsChart').getContext('2d');
         var countryVisitsChart = new Chart(ctx4, {
             type: 'bar',
             data:
             {
-                labels: visitsCountryList,
+                labels: siteVisitsList,
                 datasets: [
                     {
-                    label: "Visits of top " + "{{ siteVisitsOpts.top_num_by_location }} countries - last {{ siteVisitsOpts.timerange }} days",
-                        data: visitCountryValuesList,
+                    label: "Visits of top " + "{{ siteVisitsOpts.top_num_by_location }} {{ site_visits_display_type }} - last {{ siteVisitsOpts.timerange }} days",
+                        data: siteVisitsValuesList,
                         backgroundColor: BG_COLORS,
                         borderWidth: 1
                     }
@@ -251,7 +251,7 @@
 
 <div class="container container-color-neutral">
     {% if pagesViewedOpts.display and usersOpts.display %}
-    <h2 class="text-light textshadow">>Pages Viewed, Users</h2>
+    <h2 class="text-light textshadow">Pages Viewed, Users</h2>
     <div class="row wide-margins-row" style="padding-bottom: 3%;">
         <div class="col-sm">
             <span style="font-size: 18px; color: black" id="id-pageViewsLabel"></span>
@@ -268,6 +268,7 @@
                     </svg>
                     <span class="highlight" style="font-size: 4em; font-weight: bolder;">&emsp;{{ users_registered_count }}</span>
                 </div>
+                {% if usersOpts.show_users_online %}
                 <div class="col-md">
                     <p class="text-center" style="font-size: 19px; color: black;">
                         Total Users Online
@@ -277,6 +278,7 @@
                     </svg>
                     <span class="highlight" style="font-size: 4em; font-weight: bolder;">&emsp;{{ users_online_count }}</span>
                 </div>
+                {% endif %}
             </div>
 		</div>
 	</div>
@@ -306,6 +308,7 @@
             </svg>
             <span class="highlight" style="font-size: 4em; font-weight: bolder;">&emsp;{{ users_registered_count }}</span>
         </div>
+        {% if usersOpts.show_users_online %}
         <div class="col-md">
             <p style="font-size: 19px; color: black;">
                 Total Users Online
@@ -315,6 +318,7 @@
             </svg>
             <span class="highlight" style="font-size: 4em; font-weight: bolder;">&emsp;{{ users_online_count }}</span>
         </div>
+        {% endif %}
     </div>
     {% endif %}
     <br>
@@ -337,7 +341,7 @@
 			<canvas width="75" height="75" id="id-productSalesChart"></canvas>
 		</div>
 		<div class="col-sm">
-			<canvas width="75" height="75" id="id-visitsCountryChart"></canvas>
+			<canvas width="75" height="75" id="id-siteVisitsChart"></canvas>
 		</div>
 	</div>
     {% elif productSalesOpts.display %}
@@ -351,7 +355,7 @@
     <h2 class="text-light textshadow">Sitve Visits</h2>
     <div class="row wide-margins-row" style="padding-bottom: 3%;">
         <div class="col" style="margin-left: 25%; margin-right: 25%;">
-            <canvas width="75" height="75" id="id-visitsCountryChart"></canvas>
+            <canvas width="75" height="75" id="id-siteVisitsChart"></canvas>
         </div>
     </div>
     {% endif %}
