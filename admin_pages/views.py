@@ -111,7 +111,8 @@ def manage_user_profile(request):
 
             if len(request.FILES) != 0:
                 fs_storage = FileSystemStorage(location=STATIC_IMGS_DIR)
-                if profile.profile_img_name != '':
+                if ((profile.profile_img_name != '') 
+                    and (profile.profile_img_name != 'profile-default.gif')): # Prevent deletion of default image.
                     try:
                         os.remove(os.path.join(STATIC_IMGS_DIR,
                             profile.profile_img_name))
