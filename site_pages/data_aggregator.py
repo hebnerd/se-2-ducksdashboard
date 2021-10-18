@@ -38,8 +38,9 @@ def group_collection(collection, attribute, max_bins, aggregate_on_quantity_fiel
     categories = categories[:max_bins]
     values = values[:max_bins]
 
-    categories.append('All Other')
-    values.append(other_values)
+    if other_values > 0: # Hide the All Other category if it is empty.
+        categories.append('All Other')
+        values.append(other_values)
 
     return categories, values
 
