@@ -16,4 +16,5 @@ urlpatterns = [
     path('manage_site_visits_opts', views.manage_site_visits_opts, name='manage_site_visits_opts'),
     path('manage_pages_viewed_opts', views.manage_pages_viewed_opts, name='manage_pages_viewed_opts'),
     path('manage_users_opts', views.manage_users_opts, name='manage_users_opts'),
+    path('manage_day_and_time_opts', views.manage_day_and_time_opts, name='manage_day_and_time_opts'),
 ]

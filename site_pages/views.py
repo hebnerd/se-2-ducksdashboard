@@ -20,6 +20,7 @@ def index(request):
     siteVisitsOpts = SiteVisitsOpts.objects.get(id=1)
     pagesViewedOpts = PagesViewedOpts.objects.get(id=1)
     usersOpts = UsersOpts.objects.get(id=1)
+    dayAndTimeOpts = DayAndTimeOpts.objects.get(id=1)
 
     pet_categories_list, pet_categories_values_list = (data_aggregator
         .get_pet_sales_categories(petSalesOpts.timerange, petSalesOpts.top_num_categories))
@@ -46,6 +47,8 @@ def index(request):
 
     users_registered_count, users_online_count = data_aggregator.get_users_metrics()
 
+    site_visits = data_aggregator.get_site_visits_datetimes(dayAndTimeOpts.timerange, dayAndTimeOpts.top_num_days)
+
     context = {
         'home': home,
         'petSalesOpts': petSalesOpts,
@@ -53,6 +56,7 @@ def index(request):
         'siteVisitsOpts': siteVisitsOpts,
         'pagesViewedOpts': pagesViewedOpts,
         'usersOpts': usersOpts,
+        'dayAndTimeOpts': dayAndTimeOpts,
         
         'pet_categories_list': pet_categories_list,
         'pet_categories_values_list': pet_categories_values_list,
@@ -66,11 +70,12 @@ def index(request):
 		'site_visits_list': site_visits_list,
 		'site_visits_values_list': site_visits_values_list,
         'site_visits_display_type': site_visits_display_type,
+        'site_visits': site_visits,
 		
 		'page_views_list': page_views_list,
 		'page_views_values_list': page_views_values_list,
 
         'users_registered_count': users_registered_count,
-        'users_online_count': users_online_count,
+        'users_online_count': users_online_count,        
     }
     return render(request, 'site_pages/index.html', context)
