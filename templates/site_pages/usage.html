@@ -365,15 +365,7 @@
     </p>
     {% endif %}
 </div>
-<div style="position: fixed; right: 5%; top: 50%; width: 4em; margin-top: -5em;">
-    <button class="bttn-outline-green" onclick="window.location.reload()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
-        <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
-        </svg>
-        Refresh
-    </button>
-</div>
+
 <div class="container container-color-neutral">
     {% if pagesViewedOpts.display and usersOpts.display %}
     <h2 class="text-light textshadow">Pages Viewed, Users</h2>
@@ -485,16 +477,30 @@
     </div>
     {% endif %}
     {% if dayAndTimeOpts.display %}
+    <h2 class="text-light textshadow">Most Popular Days</h2>
     <div class="row wide-margins-row" style="padding-bottom: 3%;">
+        <div class="col-sm">
+            <br>
+        </div>
         <div class="col-md">
-            <h2 class="text-light textshadow">Most Popular Days</h2>
             <span style="font-size: 18px; color: black" id="id-dayAndTimeLabel"></span>
             <canvas width="75" height="75" id="id-dayAndTimeChart"></canvas>
         </div>
+        <div class="col-sm">
+            <br>
+        </div>
+    </div>
+    <h2 class="text-light textshadow">Most Popular Times</h2>
+    <div class="row wide-margins-row" style="padding-bottom: 3%;">
+        <div class="col-sm">
+            <br>
+        </div>
         <div class="col-md">
-            <h2 class="text-light textshadow">Most Popular Times</h2>
             <span style="font-size: 18px; color: black" id="id-timeLabel"></span>
             <canvas width="75" height="75" id="id-timeChart"></canvas>
+        </div>
+        <div class="col-sm">
+            <br>
         </div>
     </div>
     {% endif %}
