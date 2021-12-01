@@ -28,6 +28,9 @@ x.save()
 x = UsersOpts(id=1)
 x.save()
 
+x = DayAndTimeOpts(id=1)
+x.save()
+
 print('\n###### Create initial admin account ######')
 print('You must create an initial admin account\nto log into <hostname>/users/login/\n')
 fname = input('  First Name: ')

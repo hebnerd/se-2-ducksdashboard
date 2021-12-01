@@ -214,3 +214,16 @@ def manage_users_opts(request):
             return HttpResponseRedirect(reverse('admin_pages:admin_index'))
     context = { 'form': form } 
     return render(request, 'admin_pages/manage_metrics_display_opts/manage_users.html', context)
+
+@login_required
+def manage_day_and_time_opts(request):
+    day_and_time_opts = DayAndTimeOpts.objects.get(id=1)
+    if request.method != 'POST':
+        form = DayAndTimeOptsForm(instance=day_and_time_opts)
+    else:
+        form = DayAndTimeOptsForm(instance=day_and_time_opts, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('admin_pages:admin_index'))
+    context = { 'form': form }
+    return render(request, 'admin_pages/manage_metrics_display_opts/manage_dayandtime.html', context)

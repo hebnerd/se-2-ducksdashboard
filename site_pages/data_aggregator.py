@@ -82,3 +82,8 @@ def get_users_metrics():
     online_users_count = len(query.json()['results'])
 
     return registered_users_count, online_users_count
+
+def get_site_visits_datetimes(timerange, max_bins):
+    query = requests.get(f"{URL_PREFIX}/usage/visits?timerange={timerange}")
+    results = query.json()['results']
+    return group_collection(results, 'Visited_Timestamp', max_bins)

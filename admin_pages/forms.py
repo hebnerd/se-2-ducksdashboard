@@ -257,3 +257,37 @@ class UsersOptsForm(forms.ModelForm):
             'timerange_registered', 'show_users_online',
             'display'
         ]
+
+class DayAndTimeOptsForm(forms.ModelForm):
+    top_num_days = forms.IntegerField(
+        label='Most Popular, # of Days',
+        widget=forms.Select(
+            choices=MetricsDisplayOpts.MAX_BINS
+        )
+    )
+
+    top_num_times = forms.IntegerField(
+        label='Most Popular, # of Times',
+        widget=forms.Select(
+            choices=MetricsDisplayOpts.MAX_BINS
+        )
+    )
+
+    timerange = forms.IntegerField(
+        label='Time range',
+        widget=forms.Select(
+            choices=MetricsDisplayOpts.TIME_RANGE
+        )
+    )
+
+    display = forms.BooleanField(
+        label='Show on Dashboard',
+        required=False
+    )
+
+    class Meta:
+        model = DayAndTimeOpts
+        fields = [
+            'top_num_days', 'top_num_times',
+            'timerange', 'display'
+        ]

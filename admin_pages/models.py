@@ -43,3 +43,9 @@ class UsersOpts(models.Model): # No. users registered per unit of time, no. user
     timerange_registered = models.IntegerField(default=0)
     show_users_online = models.BooleanField(default=True)
     display = models.BooleanField(default=False)
+
+class DayAndTimeOpts(models.Model): # Most popular days and times
+    top_num_days = models.IntegerField(default=6)
+    top_num_times = models.IntegerField(default=6)
+    timerange = models.IntegerField(default=7)
+    display = models.BooleanField(default=False)
